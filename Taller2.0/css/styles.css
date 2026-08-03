@@ -1,0 +1,264 @@
+/* =========================================
+   1. RESET Y CONFIGURACIÓN BASE
+   ========================================= */
+   * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #111111;
+    color: #ffffff;
+    font-family: 'Space Mono', monospace, sans-serif;
+  }
+  
+  /* =========================================
+     2. HEADER Y MENÚ (Barra estática y hover)
+     ========================================= */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: #8b0000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  }
+  
+  #logo {
+    height: 60px;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  
+  #logo:hover {
+    transform: scale(1.12) rotate(-2deg);
+    filter: invert(100%) drop-shadow(0px 0px 8px #ffb7c5);
+  }
+  
+  header ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+  }
+  
+  header a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  
+  header a:hover {
+    color: #ffb7c5;
+    text-decoration: underline;
+  }
+  
+  /* =========================================
+     3. ESTRUCTURA PRINCIPAL Y TÍTULOS
+     ========================================= */
+  main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Pirata One', cursive;
+    color: #ffffff;
+    text-decoration: underline;
+    text-decoration-color: #ffb7c5; /* Restaurado a tu rosa claro */
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+  }
+  
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.2rem; margin-top: 20px;}
+  h3 { font-size: 1.5rem; }
+  
+  /* =========================================
+     4. PÁGINA 1: BIENVENIDA (Imagen flotante)
+     ========================================= */
+  .parrafo {
+    line-height: 1.7;
+    font-size: 1rem;
+    color: #e0e0e0;
+    text-align: justify;
+  }
+  
+  #imagen {
+    float: right;
+    width: 230px;
+    height: auto;
+    border: 1px solid black; 
+    margin-left: 25px;
+    margin-bottom: 15px;
+  }
+  
+  /* =========================================
+     5. PÁGINA 2: PERFIL (Tabla de Datos Biográficos)
+     ========================================= */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table td, table th {
+    padding: 12px;
+    border: 1px solid #000;
+  }
+  
+  /* Encabezado: Vino tinto, texto blanco y negrita */
+  table th {
+    background-color: #8b0000;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  /* Filas pares: Gris oscuro, texto gris claro */
+  table tr:nth-child(even) {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+  
+  /* Filas impares: Rosa oscuro, texto rosa claro */
+  table tr:nth-child(odd) {
+    background-color: #331825; 
+    color: #ffb7c5;
+  }
+  
+  /* =========================================
+     6. PÁGINA 3: TRAYECTORIA (Subsecciones e Índice)
+     ========================================= */
+  #indice {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border: 1px solid #333;
+    margin-bottom: 40px;
+  }
+  
+  #indice ul {
+    list-style: none;
+  }
+  
+  #indice a {
+    color: #ffffff;
+    text-decoration: none;
+    line-height: 1.8;
+    font-weight: bold;
+  }
+  
+  #indice a:hover {
+    color: #ffb7c5;
+    text-decoration: underline;
+  }
+
+  #indice .lista-numerada {
+    padding: 40px;
+    margin-top: 10px;
+  }
+  
+  .subseccion {
+    border: 2px solid #8b0000;
+    background: linear-gradient(to bottom right, #1a1a1a, #2a0b14);
+    padding: 30px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+  }
+  
+  .subseccion p {
+    margin-bottom: 25px;
+    line-height: 1.6;
+    color: #d1d1d1;
+  }
+  
+  .lista-viñetas {
+    padding-left: 20px;
+  }
+  .lista-viñetas li::marker {
+    color: #ffb7c5;
+    font-size: 1.5rem;
+  }
+  
+  .lista-numerada {
+    padding-left: 20px;
+  }
+  .lista-numerada li::marker {
+    color: #ffb7c5;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .lista-viñetas li strong, .lista-numerada li strong {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  
+  /* =========================================
+     7. EFECTO HOVER DE TARJETAS (Trayectoria)
+     ========================================= */
+  .tarjeta-hover {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    margin-bottom: 40px;
+    overflow: hidden;
+    border: 2px solid #000;
+    border-radius: 5px;
+  }
+  
+  .tarjeta-hover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .capa-texto {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    transition: bottom 0.4s ease;
+  }
+  
+  .capa-texto p {
+    color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: justify;
+    margin: 0;
+  }
+  
+  .tarjeta-hover:hover .capa-texto {
+    bottom: 0;
+  }
+  
+  .tarjeta-hover:hover img {
+    transform: scale(1.1);
+  }
+  
+  /* =========================================
+     8. FOOTER
+     ========================================= */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1a1a1a;
+    color: #888888;
+    margin-top: 50px;
+    font-size: 0.9rem;
+  }
