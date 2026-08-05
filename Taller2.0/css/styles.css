@@ -1,6 +1,4 @@
-/* =========================================
-   1. RESET Y CONFIGURACIÓN BASE
-   ========================================= */
+  /* Reseteo de configuraciones predeterminadas de los navegadores */
    * {
     box-sizing: border-box;
     margin: 0;
@@ -13,9 +11,7 @@
     font-family: 'Space Mono', monospace, sans-serif;
   }
   
-  /* =========================================
-     2. HEADER Y MENÚ (Barra estática y hover)
-     ========================================= */
+  /* HEADER Y MENÚ */
   header {
     position: sticky;
     top: 0;
@@ -58,9 +54,7 @@
     text-decoration: underline;
   }
   
-  /* =========================================
-     3. ESTRUCTURA PRINCIPAL Y TÍTULOS
-     ========================================= */
+  /* ESTILOS DEL MAIN Y DE LOS TITULOS */
   main {
     max-width: 900px;
     margin: 40px auto;
@@ -71,7 +65,7 @@
     font-family: 'Pirata One', cursive;
     color: #ffffff;
     text-decoration: underline;
-    text-decoration-color: #ffb7c5; /* Restaurado a tu rosa claro */
+    text-decoration-color: #ffb7c5;
     margin-bottom: 25px;
     letter-spacing: 2px;
   }
@@ -80,9 +74,7 @@
   h2 { font-size: 2.2rem; margin-top: 20px;}
   h3 { font-size: 1.5rem; }
   
-  /* =========================================
-     4. PÁGINA 1: BIENVENIDA (Imagen flotante)
-     ========================================= */
+  /* PÁGINA DE INICIO */
   .parrafo {
     line-height: 1.7;
     font-size: 1rem;
@@ -99,9 +91,7 @@
     margin-bottom: 15px;
   }
   
-  /* =========================================
-     5. PÁGINA 2: PERFIL (Tabla de Datos Biográficos)
-     ========================================= */
+  /* PÁGINA DE PERFIL */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -132,9 +122,7 @@
     color: #ffb7c5;
   }
   
-  /* =========================================
-     6. PÁGINA 3: TRAYECTORIA (Subsecciones e Índice)
-     ========================================= */
+  /* PÁGINA DE TRAYECTORIA */
   #indice {
     background-color: #1a1a1a;
     padding: 20px;
@@ -201,9 +189,7 @@
     color: #ffffff;
   }
   
-  /* =========================================
-     7. EFECTO HOVER DE TARJETAS (Trayectoria)
-     ========================================= */
+  /* Hover sobre las tarjetas de trayectoria */
   .tarjeta-hover {
     position: relative;
     width: 100%;
@@ -250,10 +236,133 @@
   .tarjeta-hover:hover img {
     transform: scale(1.1);
   }
+
+  /* --- ESTILOS DE LA PÁGINA LEGADO --- */
+
+  #legado {
+
+    margin-bottom: 35px;
+  }
+
+  /* Reproductor de Video */
+  .contenedor-video {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+  }
   
-  /* =========================================
-     8. FOOTER
-     ========================================= */
+  .contenedor-video iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    border: 1px solid #8b0000;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Galería */
+  /* Contenedor principal en fila */
+  .galeria-moda {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  /* Tarjeta contenedora */
+  .tarjeta-galeria {
+    position: relative; /* Indispensable para posicionado absoluto de la capa */
+    flex: 1;
+    height: 380px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    overflow: hidden; /* Recorta la imagen y la capa al animarse */
+    background-color: #1a1a1a;
+  }
+
+  /* Imagen base */
+  .tarjeta-galeria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  /* Capa oscura de texto (Oculta abajo por defecto) */
+  .tarjeta-galeria .capa-texto {
+    position: absolute;
+    bottom: -100%; /* Oculta la capa debajo de la tarjeta */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.88); /* Fondo semi-transparente oscuro */
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    transition: bottom 0.4s ease; /* Anima el deslizamiento hacia arriba */
+  }
+
+  /* Texto dentro de la capa */
+  .tarjeta-galeria .capa-texto p {
+    color: #ffffff;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    text-align: justify;
+    margin: 0;
+  }
+
+  .tarjeta-galeria .capa-texto strong {
+    color: #ffb7c5; /* Resalta el título en rosa claro */
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+
+  /* --- INTERACCIÓN HOVER --- */
+
+  /* Muestra el texto subiendo la capa */
+  .tarjeta-galeria:hover .capa-texto {
+    bottom: 0;
+  }
+
+  /* Agranda la foto al pasar el mouse */
+  .tarjeta-galeria:hover img {
+    transform: scale(1.1);
+  }
+
+  /* Enlaces de Interés */
+  #viñeta-legado {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  #viñeta-legado li a {
+    display: block;
+    background-color: #1a1a1a;
+    color: #ffb7c5;
+    text-decoration: none;
+    padding: 15px 20px;
+    border: 1px solid #8b0000;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  #viñeta-legado li a:hover {
+    background-color: #8b0000;
+    color: #ffffff;
+    transform: translateX(8px);
+  }
+
+
+  /* FOOTER */
+
   footer {
     text-align: center;
     padding: 20px;
