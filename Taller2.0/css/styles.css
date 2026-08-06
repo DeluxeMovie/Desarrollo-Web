@@ -272,7 +272,7 @@
 
   /* Tarjeta contenedora */
   .tarjeta-galeria {
-    position: relative; /* Indispensable para posicionado absoluto de la capa */
+    position: relative; /* Posicionado absoluto de la capa */
     flex: 1;
     height: 380px;
     border: 1px solid #000000;
@@ -314,7 +314,7 @@
   }
 
   .tarjeta-galeria .capa-texto strong {
-    color: #ffb7c5; /* Resalta el título en rosa claro */
+    color: #ffb7c5;
     display: block;
     margin-bottom: 8px;
     font-size: 0.95rem;
@@ -322,12 +322,10 @@
 
   /* --- INTERACCIÓN HOVER --- */
 
-  /* Muestra el texto subiendo la capa */
   .tarjeta-galeria:hover .capa-texto {
     bottom: 0;
   }
 
-  /* Agranda la foto al pasar el mouse */
   .tarjeta-galeria:hover img {
     transform: scale(1.1);
   }
