@@ -1,15 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedales</title>
-
+    <title>Santana Effects - Tienda de Pedales</title>
+    <!-- Enlace a la hoja de estilos externa -->
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <header>
+
+    <!-- Encabezado con información de la tienda y carrito -->
+    <header class="tienda-header">
+        <div class="logo-container">
+            <!-- Logo y Nombre de la tienda -->
+            <img src="https://cdn-icons-png.flaticon.com/512/1829/1829976.png" alt="Logo Santana Effects" class="logo-img">
+            <h1>Santana Effects</h1>
+        </div>
         
+        <!-- Contenedor del carrito de compras -->
+        <nav class="carrito-container">
+            <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Icono Carrito" class="carrito-icono">
+            
+            <!-- Dropdown del carrito que se muestra al hacer hover -->
+            <div class="carrito-dropdown">
+                <table id="lista-carrito">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenido-carrito">
+                        <!-- Aquí se inyectarán los items con JS más adelante -->
+                        <tr>
+                            <td colspan="4" class="carrito-vacio">El carrito está vacío</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button id="vaciar-carrito" class="btn-vaciar">Vaciar carrito</button>
+            </div>
+        </nav>
     </header>
-    
+
+    <!-- Contenido principal de la página -->
+    <main>
+        
+        <!-- Sección de introducción al negocio -->
+        <section id="introduccion" class="seccion-intro">
+            <article class="intro-texto">
+                <h2>El tono perfecto a tus pies</h2>
+                <p>En Santana Effects somos apasionados por la experimentación sonora. Encuentra la mejor selección de pedales analógicos y digitales para moldear tu sonido. Desde distorsiones clásicas hasta delays experimentales, tenemos las herramientas que tu pedalboard necesita.</p>
+            </article>
+            <figure class="intro-imagen">
+                <img src="https://images.unsplash.com/photo-1516961642265-531546e84af2?q=80&w=800&auto=format&fit=crop" alt="Pedalboard profesional">
+            </figure>
+        </section>
+
+        <!-- Sección del catálogo de la tienda -->
+        <section id="tienda" class="seccion-tienda">
+            <h2 class="titulo-seccion">TIENDA</h2>
+            
+            <div class="grid-productos" id="contenedor-productos">
+                <!-- Tarjeta de Producto 1 -->
+                <article class="tarjeta-producto">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-eLWHds4LMRtTHi4f9Qc0B1wSNKL4uh5dFC2JlWk8UHXKMcxusyy_KWx3&s=10" alt="Ibanez Echo Shifter" class="producto-img">
+                    <div class="producto-info">
+                        <h3>Ibanez Echo Shifter ES3</h3>
+                        <!-- 3 Atributos adicionales requeridos -->
+                        <ul class="producto-atributos">
+                            <li><strong>Tipo:</strong> Analog Delay</li>
+                            <li><strong>Circuito:</strong> Bucket Brigade</li>
+                            <li><strong>Alimentación:</strong> 9V DC</li>
+                        </ul>
+                        <p class="producto-precio">$ 650.000</p>
+                        <button class="btn-agregar">Agregar al carrito</button>
+                    </div>
+                </article>
+
+                <!-- Tarjeta de Producto 2 -->
+                <article class="tarjeta-producto">
+                    <img src="https://tiendadelmusico.com/26404-large_default/boss-rc-1-loop-station-pedal-looper-para-guitarra.jpg" alt="Boss RC-1" class="producto-img">
+                    <div class="producto-info">
+                        <h3>Boss Loop Station RC-1</h3>
+                        <!-- 3 Atributos adicionales requeridos -->
+                        <ul class="producto-atributos">
+                            <li><strong>Tipo:</strong> Looper / Loop Station</li>
+                            <li><strong>Circuito:</strong> Digital</li>
+                            <li><strong>Alimentación:</strong> 9V DC</li>
+                        </ul>
+                        <p class="producto-precio">$ 450.000</p>
+                        <button class="btn-agregar">Agregar al carrito</button>
+                    </div>
+                </article>
+
+                <!-- Tarjeta de Producto 3 -->
+                <article class="tarjeta-producto">
+                    <img src="https://musicbox.com.co/wp-content/uploads/2022/06/6007806-Pedal-Distorcion-Turbo-Boss-DS1-B.jpg" alt="Boss DS-1" class="producto-img">
+                    <div class="producto-info">
+                        <h3>Boss DS-1</h3>
+                        <!-- 3 Atributos adicionales requeridos -->
+                        <ul class="producto-atributos">
+                            <li><strong>Tipo:</strong> Distorsión</li>
+                            <li><strong>Circuito:</strong> Analógico</li>
+                            <li><strong>Alimentación:</strong> 9V DC</li>
+                        </ul>
+                        <p class="producto-precio">$ 300.000</p>
+                        <button class="btn-agregar">Agregar al carrito</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Sección de formulario para agregar nuevos artículos -->
+        <section id="agregar-articulo" class="seccion-formulario">
+            <h2 class="titulo-seccion">AGREGAR ARTÍCULO</h2>
+            
+            <form id="formulario-nuevo-producto" class="formulario-caja">
+                <!-- Nombre -->
+                <div class="campo-form">
+                    <label for="nombre-input">Nombre del artículo</label>
+                    <input type="text" id="nombre-input" placeholder="Ej: ProCo Rat 2" required>
+                </div>
+
+                <!-- Atributo 1 -->
+                <div class="campo-form">
+                    <label for="attr1-input">Atributo 1 (Tipo de efecto)</label>
+                    <input type="text" id="attr1-input" placeholder="Ej: Fuzz" required>
+                </div>
+
+                <!-- Atributo 2 -->
+                <div class="campo-form">
+                    <label for="attr2-input">Atributo 2 (Circuito)</label>
+                    <input type="text" id="attr2-input" placeholder="Ej: Analógico" required>
+                </div>
+
+                <!-- Atributo 3 -->
+                <div class="campo-form">
+                    <label for="attr3-input">Atributo 3 (Alimentación)</label>
+                    <input type="text" id="attr3-input" placeholder="Ej: 9V DC" required>
+                </div>
+
+                <!-- Imagen URL -->
+                <div class="campo-form">
+                    <label for="imagen-input">Imagen (URL)</label>
+                    <input type="url" id="imagen-input" placeholder="https://..." required>
+                </div>
+
+                <!-- Precio -->
+                <div class="campo-form">
+                    <label for="precio-input">Precio</label>
+                    <input type="number" id="precio-input" placeholder="Ej: 350000" min="0" required>
+                </div>
+
+                <div class="campo-boton">
+                    <button type="submit" class="btn-submit">Agregar artículo</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer semántico -->
+    <footer>
+        <p>&copy; 2026 Santana Effects - Taller 1 Parte 2</p>
+    </footer>
+
+    <!-- Enlace al script que desarrollaremos luego -->
+    <script src="..\js\app.js"></script>
 </body>
 </html>
