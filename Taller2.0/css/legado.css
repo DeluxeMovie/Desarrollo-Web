@@ -1,0 +1,120 @@
+/* --- ESTILOS DE LA PÁGINA LEGADO --- */
+
+  #legado {
+
+    margin-bottom: 35px;
+  }
+
+  /* Reproductor de Video */
+  .contenedor-video {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+  }
+  
+  .contenedor-video iframe {
+    width: 100%;
+    max-width: 560px;
+    height: 315px;
+    border: 1px solid #8b0000;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Galería */
+  /* Contenedor principal en fila */
+  .galeria-moda {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  /* Tarjeta contenedora */
+  .tarjeta-galeria {
+    position: relative; 
+    flex: 1;
+    height: 380px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    overflow: hidden; 
+    background-color: #1a1a1a;
+  }
+
+  /* Imagen base */
+  .tarjeta-galeria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  /* Capa oscura de texto (Oculta abajo por defecto) */
+  .tarjeta-galeria .capa-texto {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.88);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    transition: bottom 0.4s ease; /* Anima el deslizamiento hacia arriba */
+  }
+
+  /* Texto dentro de la capa */
+  .tarjeta-galeria .capa-texto p {
+    color: #ffffff;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    text-align: justify;
+    margin: 0;
+  }
+
+  .tarjeta-galeria .capa-texto strong {
+    color: #ffb7c5;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+
+  /* --- INTERACCIÓN HOVER --- */
+
+  .tarjeta-galeria:hover .capa-texto {
+    bottom: 0;
+  }
+
+  .tarjeta-galeria:hover img {
+    transform: scale(1.1);
+  }
+
+  /* Enlaces de Interés */
+  #viñeta-legado {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  #viñeta-legado li a {
+    display: block;
+    background-color: #1a1a1a;
+    color: #ffb7c5;
+    text-decoration: none;
+    padding: 15px 20px;
+    border: 1px solid #8b0000;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  #viñeta-legado li a:hover {
+    background-color: #8b0000;
+    color: #ffffff;
+    transform: translateX(8px);
+  }

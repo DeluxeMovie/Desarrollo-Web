@@ -1,0 +1,30 @@
+/* PÁGINA DE PERFIL */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table td, table th {
+    padding: 12px;
+    border: 1px solid #000;
+  }
+  
+  /* Encabezado vino tinto, texto blanco y negrita */
+  table th {
+    background-color: #8b0000;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  /* Filas pares gris oscuro, texto gris claro */
+  table tr:nth-child(even) {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+  
+  /* Filas impares rosa oscuro, texto rosa claro */
+  table tr:nth-child(odd) {
+    background-color: #331825; 
+    color: #ffb7c5;
+  }
