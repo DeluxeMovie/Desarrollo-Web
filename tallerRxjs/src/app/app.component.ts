@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Subject, switchMap, catchError, of } from 'rxjs';
+import { Subject, switchMap, catchError, of, map, mergeMap, toArray, from } from 'rxjs';
 
 import { UserService } from './service/user.service';
 import { PostService } from './service/post.service';
@@ -35,8 +35,8 @@ export class AppComponent {
 
   constructor() {
     this.searchSubject.pipe(
+      // 1. Buscar usuario por username
       switchMap((username) => {
-        // Limpiamos los datos anteriores al buscar de nuevo
         this.user = null;
         this.posts = [];
         this.notFound = false;
@@ -45,17 +45,52 @@ export class AppComponent {
 
         return this.userService.searchUser(username).pipe(
           catchError((err) => {
-            console.error('Error al buscar usuario', err);
+            console.error('Error al buscar usuario:', err);
             return of(null);
           })
         );
+      }),
+
+      // 2. Si el usuario existe, se asigna y se piden sus posts
+      switchMap((userResponse) => {
+        if (!userResponse || !userResponse.users || userResponse.users.length === 0) {
+          if (userResponse) this.notFound = true;
+          return of(null);
+        }
+
+        this.user = userResponse.users[0];
+        return this.postService.getPostsByUser(this.user.id).pipe(
+          catchError((err) => {
+            console.error('Error al obtener posts:', err);
+            return of(null);
+          })
+        );
+      }),
+
+      // 3. Traer los comentarios de cada post sin hacer `.subscribe()` anidados
+      switchMap((postsResponse) => {
+        if (!postsResponse || !postsResponse.posts || postsResponse.posts.length === 0) {
+          return of([]);
+        }
+
+        // Convertimos el arreglo de posts en emisiones individuales con `from`
+        return from(postsResponse.posts).pipe(
+          mergeMap((post) =>
+            this.commentService.getCommentsByPost(post.id).pipe(
+              map((commentResponse) => ({
+                ...post,
+                comments: commentResponse.comments
+              })),
+              catchError(() => of({ ...post, comments: [] }))
+            )
+          ),
+          toArray() // Reagrupa todos los posts procesados en un solo arreglo
+        );
       })
-    ).subscribe((response) => {
-      if (response && response.users && response.users.length > 0) {
-        this.user = response.users[0];
-        this.loadPosts(this.user.id);
-      } else if (response) {
-        this.notFound = true;
+    ).subscribe((posts) => {
+      // Único subscribe donde recibimos la información completa
+      if (posts) {
+        this.posts = posts;
       }
     });
   }
@@ -65,20 +100,5 @@ export class AppComponent {
     if (username) {
       this.searchSubject.next(username);
     }
-  }
-
-  private loadPosts(userId: number) {
-    this.postService.getPostsByUser(userId).subscribe({
-      next: (response) => {
-        this.posts = response.posts;
-        for (let post of this.posts) {
-          this.commentService.getCommentsByPost(post.id).subscribe({
-            next: (response) => {
-              post.comments = response.comments;
-            }
-          });
-        }
-      }
-    });
   }
 }
