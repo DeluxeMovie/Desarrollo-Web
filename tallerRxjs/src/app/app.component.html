@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Buscar usuario</h1>
+
+  <!-- Sección 1: Barra de búsqueda -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="d-flex shadow-sm">
+        <input type="text" formControlName="username" class="form-control me-2" placeholder="Ejemplo: emilys, atuny0..." />
+        <button type="submit" class="btn btn-primary">Buscar</button>
+      </form>
+    </div>
+  </div>
+
+  @if (notFound) {
+    <div class="alert alert-danger text-center shadow-sm">
+      El nombre de usuario no existe. Intenta con otro.
+    </div>
+  }
+
+  @if (user) {
+    <!-- Sección 2: Componente de Datos del Usuario -->
+    <app-user [user]="user"></app-user>
+
+    <hr class="my-5">
+
+    <!-- Sección 3: Componente de Posts y Comentarios -->
+    <app-post [posts]="posts"></app-post>
+  }
+</div>

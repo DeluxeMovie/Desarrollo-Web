@@ -1,0 +1,46 @@
+<h3 class="mb-4">Publicaciones ({{ posts.length }})</h3>
+
+@if (posts.length === 0) {
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+}
+
+<div class="row">
+  @for (post of posts; track post.id) {
+    <div class="col-12 mb-4">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h4 class="card-title text-primary">{{ post.title }}</h4>
+          <p class="card-text">{{ post.body }}</p>
+          
+          <!-- Reacciones -->
+          <div class="d-flex gap-3 mb-3 text-secondary">
+            <span><i class="bi bi-hand-thumbs-up-fill text-success"></i> {{ post.reactions?.likes ?? 0 }}</span>
+            <span><i class="bi bi-hand-thumbs-down-fill text-danger"></i> {{ post.reactions?.dislikes ?? 0 }}</span>
+          </div>
+
+          <hr>
+          
+          <h5 class="mt-3">Comentarios</h5>
+          @if (post.comments && post.comments.length > 0) {
+            <ul class="list-group list-group-flush mt-2">
+              @for (comment of post.comments; track comment.id) {
+                <li class="list-group-item bg-light rounded mb-2">
+                  <strong><i class="bi bi-person-circle"></i> {{ comment.user.fullName || comment.user.username }}</strong>: 
+                  <span class="text-dark">{{ comment.body }}</span>
+                </li>
+              }
+            </ul>
+          } @else if (post.comments && post.comments.length === 0) {
+            <p class="text-muted small">Sin comentarios.</p>
+          } @else {
+            <p class="text-muted small placeholder-glow">
+              <span class="placeholder col-4"></span>
+            </p>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>
