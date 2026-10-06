@@ -1,8 +1,3 @@
-/* ==========================================================================
-   TALLER 1 / PARTE 2: JS Y MANIPULACIÓN DEL DOM
-   Tienda: Santana Effects
-   Técnica: Delegación de Eventos (Event Delegation)
-   ========================================================================== */
 
 // --- 1. SELECCIÓN DE ELEMENTOS PRINCIPALES DEL DOM ---
 const contenedorProductos = document.querySelector('#contenedor-productos');
@@ -17,9 +12,6 @@ let articulosCarrito = [];
 // --- 3. REGISTRO DE EVENT LISTENERS ---
 cargarEventListeners();
 
-/**
- * Registra los eventos principales usando la técnica de Delegación de Eventos
- */
 function cargarEventListeners() {
     // A. Delegación de eventos para agregar productos
     // Escuchamos el contenedor padre en lugar de cada botón individual
@@ -39,7 +31,7 @@ function cargarEventListeners() {
  * @param {Event} e - Objeto Event pasado por la delegación
  */
 function agregarProducto(e) {
-    // Verificamos mediante delegación si el usuario hizo clic en un botón de agregar
+    // Se verifica mediante delegación si se hizo clic en un botón de agregar
     if (e.target.classList.contains('btn-agregar')) {
         // Obtenemos la tarjeta padre (<article>) navegando desde el botón
         const tarjetaProducto = e.target.parentElement.parentElement;
@@ -52,12 +44,12 @@ function agregarProducto(e) {
  * @param {HTMLElement} tarjeta - Elemento HTML de la tarjeta capturada
  */
 function leerDatosProducto(tarjeta) {
-    // Creamos un objeto limpio con los 6 atributos leídos del DOM
+    // Se crea un objeto limpio con los 6 atributos leídos del DOM
     const infoProducto = {
         imagen: tarjeta.querySelector('.producto-img').src,
         nombre: tarjeta.querySelector('h3').textContent,
         precio: tarjeta.querySelector('.producto-precio').textContent,
-        id: tarjeta.querySelector('h3').textContent, // Usamos el nombre como ID único
+        id: tarjeta.querySelector('h3').textContent, // Se usa el nombre como ID único
         cantidad: 1
     };
 
@@ -65,7 +57,7 @@ function leerDatosProducto(tarjeta) {
     const existe = articulosCarrito.some(producto => producto.id === infoProducto.id);
 
     if (existe) {
-        // Si ya existe, recorremos el arreglo y sumamos +1 a su cantidad
+        // Si ya existe, se recorre el arreglo y se suma 1 a su cantidad
         articulosCarrito = articulosCarrito.map(producto => {
             if (producto.id === infoProducto.id) {
                 producto.cantidad++;
@@ -75,11 +67,11 @@ function leerDatosProducto(tarjeta) {
             }
         });
     } else {
-        // Si es la primera vez, agregamos el nuevo producto al arreglo
+        // Si es la primera vez, se agrega el nuevo producto al arreglo
         articulosCarrito = [...articulosCarrito, infoProducto];
     }
 
-    // Dibujamos la tabla actualizada en el HTML
+    // Se dibuja la tabla actualizada en el HTML
     renderizarCarritoHTML();
 }
 
@@ -89,10 +81,10 @@ function leerDatosProducto(tarjeta) {
  * Inyecta las filas dinámicas de la tabla del carrito en el DOM
  */
 function renderizarCarritoHTML() {
-    // Limpiamos el HTML previo de la tabla
+    // Se limpia el HTML previo de la tabla
     limpiarCarritoHTML();
 
-    // Si no hay productos, mostramos el estado por defecto
+    // Si no hay productos, muestra el estado por defecto
     if (articulosCarrito.length === 0) {
         contenidoCarrito.innerHTML = `
             <tr>
@@ -102,7 +94,7 @@ function renderizarCarritoHTML() {
         return;
     }
 
-    // Recorremos el arreglo global e inyectamos cada fila <tr>
+    // Se recorre el arreglo global y se inyecta cada fila <tr>
     articulosCarrito.forEach(producto => {
         const { imagen, nombre, precio, cantidad } = producto;
         const fila = document.createElement('tr');
@@ -154,7 +146,7 @@ function crearNuevoProducto(e) {
     const imagen = document.querySelector('#imagen-input').value;
     const precioNumerico = parseFloat(document.querySelector('#precio-input').value);
 
-    // Requisito estricto del taller: Alerta si el precio es menor a $1.000
+    // Alerta si el precio es menor a $1.000
     if (precioNumerico < 1000) {
         alert('Error: El precio del artículo debe ser igual o superior a $1.000');
         return;
@@ -162,7 +154,7 @@ function crearNuevoProducto(e) {
 
     const precioFormateado = `$ ${precioNumerico.toLocaleString('es-CO')}`;
 
-    // Creación dinámica de la tarjeta
+    // Creación de la tarjeta
     const nuevaTarjeta = document.createElement('article');
     nuevaTarjeta.classList.add('tarjeta-producto');
 
@@ -180,9 +172,6 @@ function crearNuevoProducto(e) {
         </div>
     `;
 
-    // ¡VENTAJA DE LA DELEGACIÓN!
-    // No necesitamos agregar ningún addEventListener a este nuevo botón.
-    // Como está dentro de #contenedor-productos, el escuchador padre lo atrapará automáticamente.
     contenedorProductos.appendChild(nuevaTarjeta);
 
     // Vaciar los campos del formulario

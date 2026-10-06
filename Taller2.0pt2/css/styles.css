@@ -8,6 +8,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Definir paleta de pinturas de la página */
 :root {
     --color-fondo: #f4f4f4;
     --color-header: #dddddd;
@@ -72,7 +73,7 @@ body {
     z-index: 1001;
 }
 
-/* PUENTE INVISIBLE: Cubre el espacio hueco */
+/* PUENTE INVISIBLE: Cubre el espacio hueco del carrito de compras */
 .carrito-dropdown::before {
     content: "";
     position: absolute;
@@ -203,7 +204,7 @@ body {
     margin-bottom: 15px;
 }
 
-/* Lista de los 3 atributos extra requeridos */
+/* Lista de los 3 atributos */
 .producto-atributos {
     list-style: none;
     font-size: 0.85rem;
